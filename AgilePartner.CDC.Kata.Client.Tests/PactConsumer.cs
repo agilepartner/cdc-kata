@@ -18,7 +18,7 @@ namespace AgilePartner.CDC.Kata.Client.Tests
                 new PactConfig
             {
                 SpecificationVersion = "2.0.0",
-                PactDir = @"..\pacts",
+                PactDir = @"..\..\..\pacts",
                 LogDir = @"c:\temp\logs"
             });
 
