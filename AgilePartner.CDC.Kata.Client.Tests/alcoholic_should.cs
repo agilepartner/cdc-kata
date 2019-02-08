@@ -53,8 +53,7 @@ namespace AgilePartner.CDC.Kata.Client.Tests
                   Headers = new Dictionary<string, object>
                   {
                     { "Content-Type", "application/json; charset=utf-8" }
-                  },
-                  Body = "Created"
+                  }
               });
                        
             await alcoholic.OrderAsync(ADULT);

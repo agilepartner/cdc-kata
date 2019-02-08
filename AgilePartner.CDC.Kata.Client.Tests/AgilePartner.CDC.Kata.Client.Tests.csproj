@@ -18,5 +18,9 @@
     <ProjectReference Include="..\AgilePartner.CDC.Kata.Shared\AgilePartner.CDC.Kata.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="pacts\" />
+  </ItemGroup>
+
 
 </Project>
