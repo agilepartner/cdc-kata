@@ -32,7 +32,7 @@ namespace AgilePartner.CDC.Kata.Bar.Tests
             pactVerifier
                 .ServiceProvider("Bar Api", serverUri)
                 .HonoursPactWith("Alcoholic")
-                .PactUri("https://raw.githubusercontent.com/agilepartner/cdc-kata/1_create_alcoholic/AgilePartner.CDC.Kata.Client.Tests/pacts/alcoholic-bar_api.json")
+                .PactUri("https://github.com/agilepartner/cdc-kata/blob/2_create_bar_service/AgilePartner.CDC.Kata.Client.Tests/pacts/alcoholic-bar_api.json")
                 .Verify();
         }
     }
