@@ -7,24 +7,24 @@ namespace AgilePartner.CDC.Kata.Bar.Tests
 {
     public class ApiTestFixture : IDisposable
     {
-        private readonly TestServer testServer;
-        public HttpClient Client { get; }
+        private IWebHost host;
 
         public ApiTestFixture()
         {
             var builder = 
                 new WebHostBuilder()
                    .UseEnvironment("Development")
+                   .UseKestrel()
+                   .UseUrls("http://localhost:9222/")
                    .UseStartup<Startup>();
 
-            testServer = new TestServer(builder);
-            Client = testServer.CreateClient();
+            host = builder.Build();
+            host.Start();
         }
 
         public void Dispose()
         {
-            Client.Dispose();
-            testServer.Dispose();
+            host.StopAsync();
         }
     }
 }

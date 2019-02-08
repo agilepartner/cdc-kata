@@ -23,8 +23,7 @@ namespace AgilePartner.CDC.Kata
             services.AddMvc(opt =>
             {
                 opt.RespectBrowserAcceptHeader = true;
-            });
-            //.SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddTransient<IBarService, BarService>()
                     .AddSwaggerGen(c =>
