@@ -1,4 +1,5 @@
 ﻿using AgilePartner.CDC.Kata.Bar;
+using AgilePartner.CDC.Kata.Bar.Exceptions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +20,12 @@ namespace AgilePartner.CDC.Kata
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc(opt =>
+            {
+                opt.RespectBrowserAcceptHeader = true;
+            });
+            //.SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
             services.AddTransient<IBarService, BarService>()
                     .AddSwaggerGen(c =>
                     {
@@ -33,16 +39,21 @@ namespace AgilePartner.CDC.Kata
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.UseSwagger();
-
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Bar API V1");
                 c.RoutePrefix = string.Empty;
             });
 
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
+            RegisterMiddlewares(app);
             app.UseMvc();
+        }
+
+        public virtual void RegisterMiddlewares(IApplicationBuilder app)
+        {
+
         }
     }
 }

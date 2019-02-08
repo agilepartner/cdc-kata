@@ -1,6 +1,8 @@
 ﻿using AgilePartner.CDC.Kata.Bar;
 using AgilePartner.CDC.Kata.Commands;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
+using System.Net.Http;
 
 namespace AgilePartner.CDC.Kata.Controllers
 {
@@ -18,10 +20,12 @@ namespace AgilePartner.CDC.Kata.Controllers
         [HttpPost]
         [ProducesResponseType(400)]
         [ProducesResponseType(201)]
-        public IActionResult GiveMeABeer([FromBody] GiveMeABeer giveMeABeer)
+        public void GiveMeABeer(GiveMeABeer giveMeABeer)
         {
             barService.GiveBeer(giveMeABeer);
-            return Created("", null);
+
+            HttpContext.Response.StatusCode = (int)HttpStatusCode.Created;
+            HttpContext.Response.ContentType = "application/json; charset=utf-8";
         }
     }
 }

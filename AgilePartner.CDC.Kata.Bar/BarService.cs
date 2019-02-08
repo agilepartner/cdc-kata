@@ -1,5 +1,5 @@
-﻿using AgilePartner.CDC.Kata.Commands;
-using System;
+﻿using AgilePartner.CDC.Kata.Bar.Exceptions;
+using AgilePartner.CDC.Kata.Commands;
 
 namespace AgilePartner.CDC.Kata.Bar
 {
@@ -7,7 +7,10 @@ namespace AgilePartner.CDC.Kata.Bar
     {
         public void GiveBeer(GiveMeABeer giveMeABeer)
         {
-            throw new NotImplementedException();
+            if(giveMeABeer.Age < 18)
+            {
+                throw new NotAuthorizedException();
+            }
         }
     }
 }
